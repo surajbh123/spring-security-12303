@@ -63,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String role) {
 	    final String ROLE_PREFIX = "ROLE_";
-		return Collections.singletonList(new SimpleGrantedAuthority(ROLE_PREFIX+role));
+		return Collections.singletonList(new SimpleGrantedAuthority(ROLE_PREFIXv  +role));
 	}
 
 }

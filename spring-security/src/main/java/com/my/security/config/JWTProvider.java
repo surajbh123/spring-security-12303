@@ -23,7 +23,7 @@ public class JWTProvider {
 
 	public String generateToken(Authentication authentication) {
 		User pricipalUser = (User) authentication.getPrincipal();
-		
+		System.out.println("generateToken");
 		return Jwts.builder()
 				.setSubject(pricipalUser.getUsername())
 				.claim("Authorities", authentication.getAuthorities())

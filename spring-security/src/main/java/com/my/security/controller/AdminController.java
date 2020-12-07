@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/admin")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
-
+//@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class AdminController {
 	
 	 
 	@GetMapping
 	public ResponseEntity<String> greetAdmin(){
-		return ResponseEntity.status(HttpStatus.OK).body("This is admin");
+		System.out.println("inside admin controller");
+		return ResponseEntity.status(HttpStatus.OK).body("This is adminggg");
 	}
 
 	

@@ -31,12 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.cors()
 		.and()
 		.csrf()
-		.disable()
+		.disable();
+		
+		httpSecurity
 		.authorizeRequests()
-		.antMatchers("/api/test/**").permitAll()
 		//.antMatchers("/api/admin/**").hasAnyAuthority(UserRole.ADMIN.toString())
-		//.antMatchers("/api/admin/**").hasRole(UserRole.ADMIN.toString())
+		  .antMatchers("api/admin/**").hasRole(UserRole.ADMIN.toString())
 		//.antMatchers("/api/admin/**").permitAll()
+		.antMatchers("api/test/**").permitAll()
 		.anyRequest()
 		.authenticated();
 		
