@@ -36,10 +36,10 @@ public class ImageController {
 
 	@PostMapping
 	@RequestMapping("uploadimage")
-	public ResponseEntity<UploadResponce> uploadImage(@RequestParam("file") MultipartFile file,HttpServletRequest request) throws IOException {
+	public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file,HttpServletRequest request) throws IOException {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		System.out.println(file.getOriginalFilename());
-		String uploadDir = "c:\\Users\\suraj\\Desktop\\ImageUpload\\";
+		String uploadDir = "\\Users\\suraj\\Desktop\\ImageUpload\\";
 		uploadDir = uploadDir.replace("\\", "/");
 		String filename =(Math.round(Math.random()*999)) +file.getOriginalFilename(); 
 		Path saveTO = Paths.get(uploadDir + filename);
@@ -54,7 +54,7 @@ public class ImageController {
 	public ResponseEntity<Resource> getImage(HttpServletRequest request) throws IOException {
 		String path = "c:\\Users\\suraj\\Desktop\\ImageUpload\\";
 		path = path.replace("\\", "/");
-		String fileName = "123.mp4";
+		String fileName = "222.png";
 
 		Path fileStorageLocation = Paths.get(path).toAbsolutePath().normalize();
 		Path filePath = fileStorageLocation.resolve(fileName).normalize();
@@ -63,9 +63,11 @@ public class ImageController {
 		String contentType = null;
 		contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
 
+		System.out.println(resource.getInputStream().read());
+		System.out.println(filePath);
 		// Fallback to the default content type if type could not be determined
 		if (contentType == null) {
-			contentType = "video/x-matroska";
+			contentType = "application/octet-stream";
 		}
 		System.out.println(MediaType.parseMediaType(contentType));
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);
