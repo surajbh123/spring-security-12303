@@ -31,6 +31,7 @@ public class ImageController {
 	@GetMapping
 	@RequestMapping("hello")
 	public ResponseEntity<String> greet() {
+		System.out.println("hello");
 		return ResponseEntity.status(HttpStatus.OK).body("Hellow");
 	}
 
