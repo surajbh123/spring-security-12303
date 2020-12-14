@@ -14,10 +14,10 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(value = {ApiRequestException.class})
 	public ResponseEntity<ApiException> handleApiReQuestException( ApiRequestException e ){
 		HttpStatus httpStatus = e.getHttpStatus() != null?e.getHttpStatus():HttpStatus.BAD_REQUEST;
-		//httpStatus = httpStatus != null ? httpStatus.BAD_REQUEST:e.get
+		System.out.println(httpStatus);
 		ApiException apiException = new ApiException(e.getMessage()
 				,httpStatus, Instant.now(),e.getClass());
-		return ResponseEntity.status(httpStatus).body(apiException);
+		return ResponseEntity.status(HttpStatus.OK).body(apiException);
 		
 	}
 

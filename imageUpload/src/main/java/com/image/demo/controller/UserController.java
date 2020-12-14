@@ -17,7 +17,7 @@ public class UserController {
 	@RequestMapping("ex")
 	public ResponseEntity<Object> getAll() {
 		//throw new ApiRequestException("heyy this is Exception");
-		throw new UserException("User Not Found",HttpStatus.NOT_FOUND );
+		throw new UserException();
 	//	return  ResponseEntity.status(HttpStatus.OK).body("");
 	}
 

@@ -13,10 +13,8 @@ public class UserExceptionHandler {
 	
 	@ExceptionHandler(value = {UserException.class})
 	public ResponseEntity<Object> handleUserException(UserException e ){
-		HttpStatus httpStatus = e.getHttpStatus();
-		
+		HttpStatus httpStatus = e.getHttpStatus() != null?e.getHttpStatus():HttpStatus.BAD_REQUEST;		
 		ApiException apiException = new ApiException(e.getMessage(), httpStatus,Instant.now() , UserException.class);
-		
 		return ResponseEntity.status(httpStatus).body(apiException);
 		
 	}
